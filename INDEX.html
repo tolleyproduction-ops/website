@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenneth Tolley | Selected Works</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       THEME VARIABLES
+       ========================================================================== */
+    
+    /* 1. DEFAULT (Modern Indigo) */
+    :root, [data-theme="default"] {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --border: #1f293d;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --tag-bg: rgba(255, 255, 255, 0.05);
+      --tag-border: rgba(255, 255, 255, 0.12);
+      --border-hover: rgba(99, 102, 241, 0.4);
+      --shadow-hover: rgba(99, 102, 241, 0.2);
+      --card-radius: 12px;
+      --font-heading: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* 2. HOLLYWOOD GOLD */
+    [data-theme="gold"] {
+      --bg: #0d0d0e;
+      --card-bg: #161618;
+      --border: #26262a;
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --accent: #d4af37;
+      --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d4af37 50%, #b45309 100%);
+      --tag-bg: rgba(245, 158, 11, 0.08);
+      --tag-border: rgba(245, 158, 11, 0.25);
+      --border-hover: rgba(212, 175, 55, 0.5);
+      --shadow-hover: rgba(212, 175, 55, 0.25);
+      --card-radius: 12px;
+      --font-heading: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* 3. MINIMALIST EDITORIAL */
+    [data-theme="editorial"] {
+      --bg: #050505;
+      --card-bg: #0d0d0d;
+      --border: #222222;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --accent: #ffffff;
+      --accent-gradient: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+      --tag-bg: rgba(255, 255, 255, 0.08);
+      --tag-border: rgba(255, 255, 255, 0.2);
+      --border-hover: #ffffff;
+      --shadow-hover: rgba(255, 255, 255, 0.15);
+      --card-radius: 4px;
+      --font-heading: 'Playfair Display', Georgia, serif;
+    }
+
+    /* 4. EDITING SUITE DARK (TECH) */
+    [data-theme="tech"] {
+      --bg: #080c14;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      --tag-bg: rgba(6, 182, 212, 0.08);
+      --tag-border: rgba(6, 182, 212, 0.25);
+      --border-hover: rgba(6, 182, 212, 0.5);
+      --shadow-hover: rgba(6, 182, 212, 0.3);
+      --card-radius: 10px;
+      --font-heading: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* 5. BROADCAST STUDIO */
+    [data-theme="studio"] {
+      --bg: #121316;
+      --card-bg: #1a1c23;
+      --border: #2a2d37;
+      --text-main: #f1f3f9;
+      --text-muted: #8b92a5;
+      --accent: #f97316;
+      --accent-gradient: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+      --tag-bg: rgba(249, 115, 22, 0.1);
+      --tag-border: rgba(249, 115, 22, 0.3);
+      --border-hover: rgba(249, 115, 22, 0.6);
+      --shadow-hover: rgba(249, 115, 22, 0.25);
+      --card-radius: 6px;
+      --font-heading: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* 6. NEON EDIT SUITE */
+    [data-theme="neon"] {
+      --bg: #07090e;
+      --card-bg: #0e121b;
+      --border: #1e2638;
+      --text-main: #f0f6ff;
+      --text-muted: #8a99b5;
+      --accent: #22d3ee;
+      --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #ec4899 100%);
+      --tag-bg: rgba(34, 211, 238, 0.08);
+      --tag-border: rgba(34, 211, 238, 0.25);
+      --border-hover: #ec4899;
+      --shadow-hover: rgba(236, 72, 153, 0.3);
+      --card-radius: 8px;
+      --font-heading: 'Inter', -apple-system, sans-serif;
+    }
+
+    /* ==========================================================================
+       GLOBAL STYLES
+       ========================================================================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      background-color: var(--bg); 
+      color: var(--text-main); 
+      line-height: 1.6; 
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 5%;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .logo { 
+      font-family: var(--font-heading);
+      font-weight: 800; 
+      font-size: 1.25rem; 
+      letter-spacing: -0.5px; 
+      background: var(--accent-gradient); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+
+    .header-emmy-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: #d4af37;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+
+    nav a { color: var(--text-muted); text-decoration: none; margin-left: 12px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+    nav a:hover, nav a.active { color: var(--text-main); }
+    nav a.active { border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+    .container { max-width: 1280px; margin: 40px auto; padding: 0 24px 60px; }
+    
+    /* Hero Section */
+    .hero { margin-bottom: 40px; }
+    .hero h2 { font-family: var(--font-heading); font-size: 2.3rem; font-weight: 800; letter-spacing: -0.5px; }
+    .hero p { color: var(--text-muted); font-size: 1.1rem; }
+
+    /* Default Grid (Standard 16:9) */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; transition: all 0.3s ease; }
+
+    .card-link { text-decoration: none; color: inherit; display: block; }
+    
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 12px 30px -10px var(--shadow-hover);
+    }
+    
+    .video-thumbnail { 
+      position: relative; 
+      padding-bottom: 56.25%; /* Default fallback */
+      height: 0; 
+      background: #1a2234; 
+      overflow: hidden;
+      transition: padding-bottom 0.3s ease;
+    }
+    .video-thumbnail img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+      opacity: 0.85;
+    }
+    .card:hover .video-thumbnail img {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+      z-index: 2;
+    }
+    .play-button::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7px 0 7px 12px;
+      border-color: transparent transparent transparent #ffffff;
+      margin-left: 2px;
+    }
+    .card:hover .play-button {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: var(--accent);
+      border-color: transparent;
+    }
+    
+    .card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+    
+    /* Network Logo Tag Container */
+    .tag { 
+      display: inline-flex; 
+      align-items: center;
+      justify-content: center;
+      background: var(--tag-bg); 
+      border: 1px solid var(--tag-border);
+      padding: 8px 16px; 
+      border-radius: 20px; 
+      margin-bottom: 12px; 
+      align-self: flex-start; 
+      line-height: 1;
+    }
+
+    .tag.discovery-tag {
+      padding: 5px 16px;
+    }
+
+    .tag.netflix-tag {
+      padding: 13px 22px;
+    }
+
+    .network-logo {
+      height: 18px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      display: block;
+      padding: 2px 0;
+      box-sizing: content-box;
+      filter: brightness(0) invert(1);
+    }
+
+    .network-logo.netflix {
+      filter: none;
+      height: 21px;
+      padding: 0;
+    }
+
+    .network-logo.discovery {
+      filter: none;
+      height: 30px;
+      width: auto;
+      display: block;
+    }
+
+    .card-info h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+    
+    .caption {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 10px 12px;
+      border-radius: 6px;
+      border-left: 2px solid var(--accent);
+      margin-top: auto;
+    }
+
+    /* Cinematic Anamorphic Layout (21:9) */
+    .grid[data-layout="grid-219"] .video-thumbnail {
+      padding-bottom: 42.85%; /* 21:9 Aspect Ratio */
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <div class="logo">KENNETH TOLLEY</div>
+      <div class="header-emmy-badge">
+        2026 Emmy® Nominee for Outstanding Editing
+      </div>
+    </div>
+    <div class="header-actions">
+      <nav>
+        <a href="index.html" class="active">Work</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <h2>Selected Work</h2>
+      <p>A collection of edited and produced episodes</p>
+    </div>
+
+    <!-- Portfolio Grid Container Locked to 21:9 Cinematic -->
+    <div class="grid" id="portfolioGrid" data-layout="grid-219">
+
+      <!-- Item 1: King of Collectibles (Netflix) -->
+      <a href="https://www.netflix.com/us/title/81505384?s=i&trkid=13747225&shareType=Title&shareUuid=7104DE21-B404-47D5-86B5-E05808E9579D&trg=cp&unifiedEntityIdEncoded=Video%3A81505384&vlang=en" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/netflix-series.jpg" alt="King of Collectibles Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag netflix-tag">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/500px-Netflix_2015_logo.svg.png" alt="Netflix" class="network-logo netflix" referrerpolicy="no-referrer">
+            </span>
+            <h3>King of Collectibles <span style="font-size: 0.75rem; font-weight: 600; background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.25); color: #d4af37; padding: 2px 8px; border-radius: 10px; margin-left: 6px; display: inline-block; vertical-align: middle;">Emmy® Nominated</span></h3>
+            <p class="caption">Emmy® Nominated Series • Stream directly on Netflix.</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 2: House Hunters International -->
+      <a href="https://www.discoveryplus.com/shows/house-hunters-international-volume-6/s149/688407af-d09b-4076-95eb-b654f5522122/e14-staying-calm-in-cologne/1aa077ad-c8a4-4d96-8e49-d3b5973fb02b" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/house-hunters-intl.jpg" alt="House Hunters International Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="discRainbow" x1="10%" y1="0%" x2="90%" y2="100%">
+                    <stop offset="0%" stop-color="#e11d48"/>
+                    <stop offset="25%" stop-color="#f97316"/>
+                    <stop offset="50%" stop-color="#facc15"/>
+                    <stop offset="80%" stop-color="#22c55e"/>
+                    <stop offset="100%" stop-color="#06b6d4"/>
+                  </linearGradient>
+                  <radialGradient id="discOrb" cx="35%" cy="30%" r="70%">
+                    <stop offset="0%" stop-color="#38bdf8"/>
+                    <stop offset="45%" stop-color="#1d4ed8"/>
+                    <stop offset="85%" stop-color="#4338ca"/>
+                    <stop offset="100%" stop-color="#311b92"/>
+                  </radialGradient>
+                  <linearGradient id="discGloss" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+                    <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1"/>
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>House Hunters International</h3>
+            <p class="caption">Season 149, Ep 14: Staying Calm in Cologne</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 3: Fixer to Fabulous -->
+      <a href="https://www.discoveryplus.com/shows/fixer-to-fabulous-2017/s4/d480d78a-b190-4fe9-a402-b57bd54a876b/e6-family-farmhouse-restoration/eef3f8ee-bbaa-4755-af1a-6da5d60f3bcc" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/fixer-to-fabulous.jpg" alt="Fixer to Fabulous Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Fixer to Fabulous</h3>
+            <p class="caption">Season 4, Ep 6: Family Farmhouse Restoration</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 4: Battle on the Beach -->
+      <a href="https://www.discoveryplus.com/shows/battle-on-the-beach/s4/4cacbef3-e064-41b6-bb60-307701da22d2/e7-finale-shell-ebration/204e059f-ceb2-470f-9d80-799a0417f926" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/battle-on-the-beach.jpg" alt="Battle on the Beach Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Battle on the Beach</h3>
+            <p class="caption">Season 4, Ep 7: Finale Shell-ebration</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 5: Battle on the Mountain -->
+      <a href="https://www.discoveryplus.com/shows/battle-on-the-mountain/s1/c6a45e0c-358b-4bee-98a5-f0500ca52daf/e6-champions-of-the-mountain/a1cc0dcc-40da-4189-9509-19052dc3778b" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/battle-on-the-mountain.jpg" alt="Battle on the Mountain Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Battle on the Mountain</h3>
+            <p class="caption">Season 1, Ep 6: Champions of the Mountain</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 6: Chopped -->
+      <a href="https://watch.discoveryplus.ca/episode/African_Soul_108168" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/chopped-african-soul.jpg" alt="Chopped - African Soul Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Chopped</h3>
+            <p class="caption">Culinary Competition Series • Episode: African Soul</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 7: What's Wrong With That House? -->
+      <a href="https://www.discoveryplus.com/shows/whats-wrong-with-that-house/s1/e3477c79-f931-4276-81b8-71f01be08b5e/e5-rustic-barn-turned-timeless-retreat/a1cc09ba-bf95-4d4a-ba04-7672880f11ea" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/whats-wrong-house.jpg" alt="What's Wrong With That House Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>What’s Wrong With That House?</h3>
+            <p class="caption">Season 1, Ep 5: Rustic Barn Turned Timeless Retreat</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 8: Worst Yard on the Block -->
+      <a href="https://www.discoveryplus.com/shows/worst-yard-on-the-block/s1/dc11f22c-0f6c-4a80-8032-b4aeb02684fd/e3-feral-frontier/80c9261c-1540-4a43-8d93-d5dac7054507" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/worst-yard-on-the-block.jpg" alt="Worst Yard on the Block Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Worst Yard on the Block</h3>
+            <p class="caption">Season 1, Ep 3: Feral Frontier</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 9: Why the Heck Did I Buy This House? -->
+      <a href="https://www.discoveryplus.com/shows/why-the-heck-did-i-buy-this-house/s1/4d1ae61d-fc8b-4348-85e6-e4c2fc706f48/e2-hidden-compound/bf875136-bb25-4ebe-adae-b81a1c9c2587" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/why-the-heck.jpg" alt="Why the Heck Did I Buy This House Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Why the Heck Did I Buy This House?</h3>
+            <p class="caption">Season 1, Ep 2: Hidden Compound</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 10: Betting on Beloit -->
+      <a href="https://play.aetv.com/shows/betting-on-beloit/season-1/episode-1" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="https://cropper.watch.aetnd.com/cdn.watch.aetnd.com/sites/4/2025/07/betting-on-beloit-2048x1152-promo-16x9-1.jpg" alt="Betting on Beloit Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/A%26E_Network_logo.svg" alt="A&E" class="network-logo" referrerpolicy="no-referrer">
+            </span>
+            <h3>Betting on Beloit</h3>
+            <p class="caption">Season 1, Episode 1</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 11: Build It Forward -->
+      <a href="https://www.discoveryplus.com/shows/build-it-forward/s1/6f78a6d6-c3ec-43ab-850b-b6b0352c73ae/e1-stronger-than-the-texas-storm/3e902551-7efd-44d9-aa81-095cc57bf4e3" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/build-it-forward.jpg" alt="Build It Forward Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Build It Forward</h3>
+            <p class="caption">Season 1, Ep 1: Stronger Than the Texas Storm</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 12: Money Hungry -->
+      <a href="https://www.foodnetwork.com/shows/money-hungry/videos/behind-the-scenes-of-money-hungry" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/money-hungry.jpg" alt="Money Hungry Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Money Hungry</h3>
+            <p class="caption">Culinary Competition Series • Discovery+</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Item 13: Say Yes to the Dress -->
+      <a href="https://www.discoveryplus.com/shows/say-yes-to-the-dress/s13/23dbea5b-8ece-4a54-95d6-1584f81b79d4/e3-situation-in-the-salon/191e61e3-4963-44b5-9bd4-962a6507c060" target="_blank" class="card-link">
+        <div class="card">
+          <div class="video-thumbnail">
+            <img src="images/say-yes-to-the-dress.jpg" alt="Say Yes to the Dress Still">
+            <div class="play-button"></div>
+          </div>
+          <div class="card-info">
+            <span class="tag discovery-tag">
+              <svg viewBox="0 0 145 38" class="network-logo discovery" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(3, 3)">
+                  <path d="M 12 1 L 18 1 C 28 1, 32 6, 32 16 C 32 26, 28 31, 18 31 L 13 31 C 6 31, 1 26, 1 19 C 1 13, 5 8, 12 1 Z" fill="#ffffff" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
+                  <path d="M 12 3 L 18 3 C 26 3, 29 7, 29 16 C 29 24, 26 29, 18 29 L 14 29 C 8 29, 3 25, 3 19 C 3 14, 7 9, 12 3 Z" fill="url(#discRainbow)"/>
+                  <circle cx="12" cy="20" r="10" fill="#ffffff"/>
+                  <circle cx="12" cy="20" r="8.5" fill="url(#discOrb)"/>
+                  <ellipse cx="10" cy="16" rx="4.5" ry="2.5" transform="rotate(-25 10 16)" fill="url(#discGloss)"/>
+                  <path d="M 12 1.5 L 18 1.5 C 27.5 1.5, 31 6.5, 31 16 C 31 25.5, 27.5 29.5, 18 29.5 L 13 29.5 C 6.5 29.5, 2.5 25.5, 2.5 19 C 2.5 13.5, 6 8.5, 12 1.5 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                </g>
+                <text x="42" y="25" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="18" fill="#ffffff" letter-spacing="-0.5px">discovery<tspan font-weight="800" fill="#0099FF">+</tspan></text>
+              </svg>
+            </span>
+            <h3>Say Yes to the Dress</h3>
+            <p class="caption">Season 13, Ep 3: Situation in the Salon</p>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <script>
+    // 1. Dark-Only Theme Rotation Controller
+    const htmlElement = document.documentElement;
+    const themes = ['default', 'gold', 'editorial', 'tech', 'studio', 'neon'];
+    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+    htmlElement.setAttribute('data-theme', randomTheme);
+
+    // 2. Metadata Image Fetcher
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".card-link").forEach(async (card) => {
+        const targetUrl = card.getAttribute("href");
+        const imgElement = card.querySelector(".video-thumbnail img");
+        const rawSrc = imgElement.getAttribute("src");
+        
+        // Skip fetching if image already uses an external HTTP/HTTPS URL
+        if (rawSrc && rawSrc.startsWith("http")) return;
+
+        try {
+          const response = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}`);
+          const data = await response.json();
+          if (data.status === "success" && data.data.image?.url) {
+            imgElement.src = data.data.image.url;
+          }
+        } catch (e) {
+          // Retains fallback JPEG image if request fails
+        }
+      });
+    });
+  </script>
+</body>
+</html>
