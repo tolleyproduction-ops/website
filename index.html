@@ -280,7 +280,7 @@
 
     .tag.discovery-tag { padding: 5px 16px; }
     .tag.netflix-tag { padding: 13px 22px; }
-    .tag.ae-tag { padding: 8px 12px; }
+    .tag.ae-tag { padding: 8px 16px; }
 
     .network-logo {
       height: 18px;
@@ -295,6 +295,15 @@
 
     .network-logo.netflix { filter: none; height: 21px; padding: 0; }
     .network-logo.discovery { filter: none; height: 30px; width: auto; display: block; }
+
+    .network-text-ae {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      display: block;
+    }
 
     .card-info h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
     
@@ -601,9 +610,7 @@
           </div>
           <div class="card-info">
             <span class="tag ae-tag">
-              <svg viewBox="0 0 42 24" class="network-logo" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="19" font-family="'Inter', -apple-system, sans-serif" font-weight="800" font-size="20" fill="#ffffff" letter-spacing="-0.5px">A&amp;E</text>
-              </svg>
+              <span class="network-text-ae">A&amp;E</span>
             </span>
             <h3>Betting on Beloit</h3>
             <p class="caption">Season 1, Episode 1</p>
@@ -721,4 +728,3 @@
   </script>
 </body>
 </html>
-```[cite: 3]
