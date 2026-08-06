@@ -209,7 +209,7 @@
     
     .video-thumbnail { 
       position: relative; 
-      padding-bottom: 56.25%; /* Default fallback */
+      padding-bottom: 56.25%;
       height: 0; 
       background: #1a2234; 
       overflow: hidden;
@@ -265,7 +265,6 @@
     
     .card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
     
-    /* Network Logo Tag Container */
     .tag { 
       display: inline-flex; 
       align-items: center;
@@ -279,13 +278,9 @@
       line-height: 1;
     }
 
-    .tag.discovery-tag {
-      padding: 5px 16px;
-    }
-
-    .tag.netflix-tag {
-      padding: 13px 22px;
-    }
+    .tag.discovery-tag { padding: 5px 16px; }
+    .tag.netflix-tag { padding: 13px 22px; }
+    .tag.ae-tag { padding: 8px 12px; }
 
     .network-logo {
       height: 18px;
@@ -298,18 +293,8 @@
       filter: brightness(0) invert(1);
     }
 
-    .network-logo.netflix {
-      filter: none;
-      height: 21px;
-      padding: 0;
-    }
-
-    .network-logo.discovery {
-      filter: none;
-      height: 30px;
-      width: auto;
-      display: block;
-    }
+    .network-logo.netflix { filter: none; height: 21px; padding: 0; }
+    .network-logo.discovery { filter: none; height: 30px; width: auto; display: block; }
 
     .card-info h3 { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
     
@@ -324,9 +309,8 @@
       margin-top: auto;
     }
 
-    /* Cinematic Anamorphic Layout (21:9) */
     .grid[data-layout="grid-219"] .video-thumbnail {
-      padding-bottom: 42.85%; /* 21:9 Aspect Ratio */
+      padding-bottom: 42.85%;
     }
   </style>
 </head>
@@ -353,7 +337,6 @@
       <p>A collection of edited and produced episodes</p>
     </div>
 
-    <!-- Portfolio Grid Container Locked to 21:9 Cinematic -->
     <div class="grid" id="portfolioGrid" data-layout="grid-219">
 
       <!-- Item 1: King of Collectibles (Netflix) -->
@@ -617,8 +600,10 @@
             <div class="play-button"></div>
           </div>
           <div class="card-info">
-            <span class="tag">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/A%26E_Network_logo.svg" alt="A&E" class="network-logo" referrerpolicy="no-referrer">
+            <span class="tag ae-tag">
+              <svg viewBox="0 0 42 24" class="network-logo" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="19" font-family="'Inter', -apple-system, sans-serif" font-weight="800" font-size="20" fill="#ffffff" letter-spacing="-0.5px">A&amp;E</text>
+              </svg>
             </span>
             <h3>Betting on Beloit</h3>
             <p class="caption">Season 1, Episode 1</p>
@@ -711,20 +696,17 @@
   </div>
 
   <script>
-    // 1. Dark-Only Theme Rotation Controller
     const htmlElement = document.documentElement;
     const themes = ['default', 'gold', 'editorial', 'tech', 'studio', 'neon'];
     const randomTheme = themes[Math.floor(Math.random() * themes.length)];
     htmlElement.setAttribute('data-theme', randomTheme);
 
-    // 2. Metadata Image Fetcher
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".card-link").forEach(async (card) => {
         const targetUrl = card.getAttribute("href");
         const imgElement = card.querySelector(".video-thumbnail img");
         const rawSrc = imgElement.getAttribute("src");
         
-        // Skip fetching if image already uses an external HTTP/HTTPS URL
         if (rawSrc && rawSrc.startsWith("http")) return;
 
         try {
@@ -733,11 +715,10 @@
           if (data.status === "success" && data.data.image?.url) {
             imgElement.src = data.data.image.url;
           }
-        } catch (e) {
-          // Retains fallback JPEG image if request fails
-        }
+        } catch (e) {}
       });
     });
   </script>
 </body>
 </html>
+```[cite: 3]
