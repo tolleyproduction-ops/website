@@ -113,46 +113,19 @@
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 5%;
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      display: flex; justify-content: space-between; align-items: center; padding: 16px 5%;
+      background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
     }
+    .header-brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .logo { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .logo { 
-      font-family: var(--font-heading);
-      font-weight: 800; 
-      font-size: 1.25rem; 
-      background: var(--accent-gradient); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
-    }
-
-    .header-emmy-badge {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      color: #d4af37;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
+    /* Header Emmy Badge */
+      .header-emmy {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #d4af37; padding: 3px 10px; border-radius: 12px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
     }
 
     .header-actions { display: flex; align-items: center; gap: 12px; }
