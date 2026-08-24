@@ -231,21 +231,25 @@
     }
     
     .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 52px;
-      height: 52px;
-      background: rgba(17, 24, 39, 0.75);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.25s ease;
-      z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    width: 52px;
+    height: 52px;
+    background: rgba(17, 24, 39, 0.75);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    z-index: 2;
+  
+    /* Hide by default */
+    opacity: 0;
+    pointer-events: none;
     }
     .play-button::after {
       content: "";
@@ -258,10 +262,12 @@
       margin-left: 2px;
     }
     .card:hover .play-button {
-      transform: translate(-50%, -50%) scale(1.12);
-      background: var(--accent);
-      border-color: transparent;
-    }
+  /* Reveal on hover */
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.12);
+  background: var(--accent);
+  border-color: transparent;
+}
     
     .card-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
     
