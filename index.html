@@ -111,49 +111,69 @@
       line-height: 1.6; 
       transition: background-color 0.3s ease, color 0.3s ease;
     }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 5%;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-      header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 5%;
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-    .logo { 
-      font-family: var(--font-heading);
-      font-weight: 800; 
-      font-size: 1.25rem; 
-      background: var(--accent-gradient); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
-    }
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
 
-    .header-emmy-badge {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(212, 175, 55, 0.08);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      color: #d4af37;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-    }
+.header-emmy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text-main);
+}
 
     .header-actions { display: flex; align-items: center; gap: 12px; }
 
@@ -311,19 +331,15 @@
 <body>
 
   <header>
-    <div class="logo-container">
-      <div class="logo">KENNETH TOLLEY</div>
-      <div class="header-emmy-badge">
-        2026 Emmy® Nominee for Outstanding Editing
-      </div>
-    </div>
-    <div class="header-actions">
-      <nav>
-        <a href="index.html" class="active">Work</a>
-        <a href="resume.html">Resume</a>
-      </nav>
-    </div>
-  </header>
+  <div class="header-brand">
+    <a href="index.html" class="logo">KENNETH TOLLEY</a>
+    <span class="header-emmy">Emmy® Nominated</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="active">Work</a>
+    <a href="resume.html">Resume</a>
+  </nav>
+</header>
 
   <div class="container">
     <div class="hero">
