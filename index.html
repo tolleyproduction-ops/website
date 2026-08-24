@@ -326,6 +326,30 @@ nav a.active {
     .grid[data-layout="grid-219"] .video-thumbnail {
       padding-bottom: 42.85%;
     }
+
+
+    /* Mobile scroll highlight: makes the card nearest the middle of the screen
+       behave like a mouse hover while scrolling. */
+    @media (max-width: 600px) {
+      .card.is-highlighted {
+        transform: translateY(-6px);
+        border-color: var(--border-hover);
+        box-shadow: 0 12px 30px -10px var(--shadow-hover);
+      }
+
+      .card.is-highlighted .video-thumbnail img {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      .card.is-highlighted .play-button {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.12);
+        background: var(--accent);
+        border-color: transparent;
+      }
+    }
+
   @media (max-width: 600px) {
   header {
     flex-direction: column;
@@ -824,5 +848,63 @@ nav a.active {
       });
     });
   </script>
+
+<script>
+  // On touch devices, emulate the desktop hover effect for the card
+  // closest to the visual center of the screen while the user scrolls.
+  (function () {
+    if (!window.matchMedia('(max-width: 600px)').matches) return;
+
+    const cards = Array.from(document.querySelectorAll('.card'));
+    if (!cards.length) return;
+
+    let ticking = false;
+
+    function updateMobileHighlight() {
+      const viewportCenter = window.innerHeight / 2;
+      let closestCard = null;
+      let closestDistance = Infinity;
+
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+
+        // Only consider cards that are at least partly visible.
+        if (rect.bottom <= 0 || rect.top >= window.innerHeight) {
+          card.classList.remove('is-highlighted');
+          return;
+        }
+
+        const cardCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(cardCenter - viewportCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestCard = card;
+        }
+      });
+
+      cards.forEach(card => {
+        card.classList.toggle('is-highlighted', card === closestCard);
+      });
+
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateMobileHighlight);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    window.addEventListener('orientationchange', requestUpdate);
+
+    // Initial highlight.
+    requestUpdate();
+  })();
+</script>
+
 </body>
 </html>
