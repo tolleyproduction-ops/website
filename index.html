@@ -236,6 +236,7 @@ nav a.active {
     /* The source art is square; these set which band of it the 16:9 frame shows. */
     .video-thumbnail img.crop-fixer { object-position: center 0%; }
     .video-thumbnail img.crop-bargain { object-position: center 9%; }
+    .card .video-thumbnail img.youtube-zoom { transform: scale(1.1); }
 
     /* Shows the whole square poster; a blurred copy fills the side bars. */
     .video-thumbnail.letterbox::before {
@@ -496,7 +497,7 @@ nav a.active {
       <a href="https://www.youtube.com/watch?v=ZE90v3qq_ts" target="_blank" rel="noopener noreferrer" class="card-link">
         <div class="card">
           <div class="video-thumbnail">
-            <img src="https://img.youtube.com/vi/ZE90v3qq_ts/hqdefault.jpg" alt="YouTube Video Still">
+            <img class="youtube-zoom" src="https://img.youtube.com/vi/ZE90v3qq_ts/hqdefault.jpg" alt="YouTube Video Still">
             <div class="play-button"></div>
           </div>
           <div class="card-info">
