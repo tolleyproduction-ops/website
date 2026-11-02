@@ -228,8 +228,8 @@ nav a.active {
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transform: none;
-      transition: opacity 0.3s ease;
+      transform: scale(1);
+      transition: opacity 0.3s ease, transform 0.5s ease;
       opacity: 0.9;
     }
 
@@ -248,7 +248,7 @@ nav a.active {
     .video-thumbnail.letterbox img { object-fit: contain; }
 
     .card:hover .video-thumbnail img {
-      transform: none;
+      transform: scale(1.06);
       opacity: 1;
     }
 
@@ -352,7 +352,7 @@ nav a.active {
       }
 
       .card.is-highlighted .video-thumbnail img {
-        transform: none;
+        transform: scale(1.06);
         opacity: 1;
       }
 
