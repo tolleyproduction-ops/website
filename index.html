@@ -233,6 +233,20 @@ nav a.active {
       opacity: 0.9;
     }
 
+    /* The source art is square; these set which band of it the 16:9 frame shows. */
+    .video-thumbnail img.crop-fixer { object-position: center 0%; }
+    .video-thumbnail img.crop-bargain { object-position: center 9%; }
+
+    /* Shows the whole square poster; a blurred copy fills the side bars. */
+    .video-thumbnail.letterbox::before {
+      content: "";
+      position: absolute;
+      inset: -24px;
+      background: var(--thumb-bg) center / cover;
+      filter: blur(20px) brightness(0.6);
+    }
+    .video-thumbnail.letterbox img { object-fit: contain; }
+
     .card:hover .video-thumbnail img {
       transform: none;
       opacity: 1;
@@ -455,7 +469,7 @@ nav a.active {
       <a href="https://www.discoveryplus.com/shows/fixer-to-fabulous-2017/s4/d480d78a-b190-4fe9-a402-b57bd54a876b/e6-family-farmhouse-restoration/eef3f8ee-bbaa-4755-af1a-6da5d60f3bcc" target="_blank" class="card-link">
         <div class="card">
           <div class="video-thumbnail">
-            <img src="images/fixer.webp" alt="Fixer to Fabulous Still">
+            <img src="images/fixer.webp" alt="Fixer to Fabulous Still" class="crop-fixer">
             <div class="play-button"></div>
           </div>
           <div class="card-info">
@@ -551,7 +565,7 @@ nav a.active {
       <a href="https://www.discoveryplus.com/show/e9474359-24e7-4cea-98b5-1095af3b2cda/s2" target="_blank" class="card-link">
         <div class="card">
           <div class="video-thumbnail">
-            <img src="images/bargain.webp" alt="Bargain Block Still">
+            <img src="images/bargain.webp" alt="Bargain Block Still" class="crop-bargain">
             <div class="play-button"></div>
           </div>
           <div class="card-info">
@@ -685,8 +699,8 @@ nav a.active {
       <!-- Item 10: Why the Heck Did I Buy This House? -->
       <a href="https://www.discoveryplus.com/shows/why-the-heck-did-i-buy-this-house/s1/4d1ae61d-fc8b-4348-85e6-e4c2fc706f48/e2-hidden-compound/bf875136-bb25-4ebe-adae-b81a1c9c2587" target="_blank" class="card-link">
         <div class="card">
-          <div class="video-thumbnail">
-            <img src="images/why-the-heck.jpg" alt="Why the Heck Did I Buy This House Still">
+          <div class="video-thumbnail letterbox" style="--thumb-bg: url('images/why-the-heck.webp')">
+            <img src="images/why-the-heck.webp" alt="Why the Heck Did I Buy This House Still">
             <div class="play-button"></div>
           </div>
           <div class="card-info">
